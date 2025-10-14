@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>超新星纪念馆 • Supernova Memorial</title>
+    <meta name="description" content="纪念重要超新星爆发事件，并内置 Web3 像素生成器。" />
+    <script type="module" crossorigin src="/assets/index-xKYMd0GD.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CW_SAtbf.css">
+  </head>
+  <script>
+      (function(){
+          var sel = document.getElementById('__global_lang_select');
+          function getDefaultLang(){
+              try{
+                  var saved = localStorage.getItem('lang');
+                  if(saved) return saved;
+                  var nav=(navigator.language||'en').toLowerCase();
+                  if(nav.startsWith('zh')&&(nav.includes('tw')||nav.includes('hk')||nav.includes('mo'))) return 'zh-TW';
+                  if(nav.startsWith('zh')) return 'zh-CN';
+              }catch(e){}
+              return 'en';
+          }
+          function setLang(l){
+              try{ localStorage.setItem('lang', l); }catch(e){}
+              window.dispatchEvent(new CustomEvent('langchange', { detail: l }));
+          }
+          var init = getDefaultLang();
+          sel.value = init; setLang(init);
+          sel.addEventListener('change', function(){ setLang(sel.value); });
+      })();
+  </script>
+  <body class="bg-bg text-white">
+    <div id="root"></div>
+  </body>
+</html>
